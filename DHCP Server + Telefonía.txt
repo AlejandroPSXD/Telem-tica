@@ -1,5 +1,6 @@
 ROUTER 2811
 SWITCH 2950-24
+Video Guía: https://youtu.be/AOLSlmCbN6U
 
 Switch>enable 
 Switch#conf t
@@ -48,7 +49,7 @@ configura serverPool con la red de Datos:
                                   DHCP
 Pool name: serverPool
 Default Gateway: 192.168.10.1
-DNS Server: 200.10.100.2
+DNS Server: 200.10.150.2
 Start IP: 192.168.10.5
 Subnet Mask:  255.255.255.0
 Ahora se guarda, y se crea una nueva pool con el nombre de VoicePool
@@ -56,7 +57,7 @@ Ahora se guarda, y se crea una nueva pool con el nombre de VoicePool
                                   DHCP
 Pool name: VoicePool
 Default Gateway: 192.168.11.1
-DNS Server: 200.10.100.2
+DNS Server: 200.10.150.2
 Start IP: 192.168.11.5
 Subnet Mask:  255.255.255.0
 TFTP Server: 192.168.11.1   (IP del gateway de Voice)

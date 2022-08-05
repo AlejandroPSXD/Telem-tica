@@ -1,0 +1,5 @@
+Ver video
+
+https://youtu.be/Xy7zTGzaHeA
+
+Seriales deben tener mascaras 255.0.0.0
