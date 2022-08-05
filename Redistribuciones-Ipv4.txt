@@ -1,0 +1,35 @@
+RIP-OSPF
+
+router rip 
+version 2
+no auto-summary 
+redistribute ospf ID metric 15
+
+router ospf ID
+log-adjacency-changes
+redistribute rip subnets
+
+________________________________________
+
+
+RIP-EIGRP
+
+router rip 
+version 2
+no auto-summary 
+redistribute eigrp ID metric 15
+
+
+router eigrp ID
+no auto-summary 
+redistribute rip metric 10000 100 255 255 1500
+
+______________________________________________
+
+OSPF-EIGRP
+
+router eigrp ID
+redistribute ospf ID metric 10000 100 255 1 1500
+
+router ospf ID
+redistribute eigrp ID subnets

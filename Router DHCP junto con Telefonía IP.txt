@@ -1,0 +1,62 @@
+ROUTER 2811
+SWITCH 2950-24
+
+
+CONFIGURAR ROUTER COMO SERVIDOR DHCP
+
+Router>enable 
+Router#conf t
+Router(config)#ip dhcp pool voice
+Router(dhcp-config)#network 192.168.10.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.10.1
+Router(dhcp-config)#dns-server 8.8.8.8
+Router(dhcp-config)#option 150 ip 192.168.10.1
+Router(dhcp-config)#do wr
+
+Router(config)#telephony-service
+Router(config-telephony)#max-dn 5
+Router(config-telephony)# max-ephones 5
+Router(config-telephony)#ip source-address 192.168.10.1 port 2000
+Router(config-telephony)#auto assign 4 to 6
+Router(config-telephony)#auto assign 1 to 5
+
+
+ASIGNAR LOS PUERTOS DE VOZ (SWITCH)
+Switch#en
+Switch#enable
+Switch#conf t
+Switch(config)#interface range fastEthernet 0/2-4
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport voice vlan 1
+
+
+ASIGNAR EXTENSIONES A LOS TELÉFONOS (ROUTER)
+Router>enable 
+Router#conf t
+Router(config)#ephone-dn 1
+Router(config-ephone-dn)#number 1101
+Router(config-ephone-dn)#exit
+
+Router(config)#ephone-dn 2
+Router(config-ephone-dn)#number 1102
+Router(config-ephone-dn)#exit
+
+Router(config)#ephone-dn 3
+Router(config-ephone-dn)#number 1103
+Router(config-ephone-dn)#exit
+
+UNA VEZ ASIGNADO EL ENRUTAMIENTO ENTRE ROUTERS, SE ESCRIBEN
+ESTOS COMANDOS PARA LLAMAR DE PUNTA A PUNTA
+
+Router(config)#dial
+Router(config)#dial-peer voice 1 voip
+Router(config-dial-peer)#destination-pattern 12.. 
+	(Aquí cambia según el número que tengan las líneas,
+	en este caso a la 1100 le estoy diciendo que el destino es la 1200) 
+
+Router(config-dial-peer)#session target ipv4:10.0.1.2
+	(Se escribe la ip del router de entrada a la otra línea)
+Router(config-dial-peer)#do wr
+
+Nota: Al usar el session target si hay VLANs de por medio, se pone el 
+gateway de la red donde están los teléfonos

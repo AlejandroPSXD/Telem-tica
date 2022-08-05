@@ -1,0 +1,27 @@
+RIP
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 192.168.30.0
+Router(config-router)#network 10.0.1.0
+Router(config-router)#no auto-summary 
+
+________________________________________
+
+
+EIGRP
+
+Router(config)#router eigrp 100
+Router(config-router)#network 192.168.40.0
+Router(config-router)#network 10.0.2.0
+Router(config-router)#no auto-summary 
+
+
+______________________________________________
+
+OSPF
+
+Router(config)#router ospf 100
+Router(config-router)#network 192.168.20.0 0.0.0.255 area 1
+Router(config-router)#network 10.0.3.0 0.0.0.3 area 1
+Router(config-router)#exit
