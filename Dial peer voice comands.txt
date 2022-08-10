@@ -1,0 +1,78 @@
+Router actual 2811 con extensión 1200
+
+Router>
+Router>en
+Router#conf t
+Router(config)#dial-peer voice 2100 voip 
+Router(config-dial-peer)#destination-pattern 21..
+Router(config-dial-peer)#session target ipv4:200.10.60.1
+Router(config-dial-peer)#exit
+Router(config)#
+Router(config)#dial-peer voice 2200 voip 
+Router(config-dial-peer)#destination-pattern 22..
+Router(config-dial-peer)#session target ipv4:200.10.70.1
+Router(config-dial-peer)#exit
+Router(config)#
+Router(config)#dial-peer voice 2300 voip 
+Router(config-dial-peer)#destination-pattern 23..
+Router(config-dial-peer)#session target ipv4:200.10.80.1
+Router(config-dial-peer)#exit
+Router(config)#dial-peer voice 2400 voip 
+Router(config-dial-peer)#destination-pattern 24..
+Router(config-dial-peer)#session target ipv4:200.10.90.1
+Router(config-dial-peer)#exit
+Router(config)#dial-peer voice 2500 voip 
+Router(config-dial-peer)#destination-pattern 25..
+Router(config-dial-peer)#session target ipv4:200.10.100.1
+Router(config-dial-peer)#exit
+Router(config)#
+
+
+**EDIFICIO 1*******************
+en
+conf t
+dial-peer voice 1100 voip 
+destination-pattern 11..
+session target ipv4:199.150.60.1
+exit
+dial-peer voice 1200 voip 
+destination-pattern 12..
+session target ipv4:199.150.70.1
+exit
+dial-peer voice 1300 voip 
+destination-pattern 13..
+session target ipv4:199.150.80.1
+exit
+dial-peer voice 1400 voip 
+destination-pattern 14..
+session target ipv4:199.150.90.1
+exit
+dial-peer voice 1500 voip 
+destination-pattern 15..
+session target ipv4:199.150.100.1
+exit
+
+
+**EDIFICIO 2*************************
+en
+conf t
+dial-peer voice 2100 voip 
+destination-pattern 21..
+session target ipv4:200.10.60.1
+exit
+dial-peer voice 2200 voip 
+destination-pattern 22..
+session target ipv4:200.10.70.1
+exit
+dial-peer voice 2300 voip 
+destination-pattern 23..
+session target ipv4:200.10.80.1
+exit
+dial-peer voice 2400 voip 
+destination-pattern 24..
+session target ipv4:200.10.90.1
+exit
+dial-peer voice 2500 voip 
+destination-pattern 25..
+session target ipv4:200.10.100.1
+exit
